@@ -1,0 +1,105 @@
+<nav id="nav" style="diplay:flex;border-radius:0px;position: fixed;width:100%;z-index:666 " class="navbar navbar-expand-md navbar-light bg-light sticky-top ">
+  <div class="container-fluid">
+    <img src="../../../assets/Images/Logo2.png" routerLink="/" height="70px" style="margin-left: -20px;cursor:pointer"/>
+    <a class="navbar-brand" routerLink="/" style="margin-left: -30px;margin-top:10px;margin-left:1px" >
+      <span class="team">GG </span><span class="guilty">FREAKS </span>
+
+    </a>
+    <button class="navbar-toggler" type="button" style="margin-left: -30px" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div  style="width:100%;height:100%"  class="collapse navbar-collapse" id="navbarResponsive">
+      <ul style="float:right" class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <mat-icon [matMenuTriggerFor]="products" style="margin-top: 15px; cursor: pointer;   color: rgb(212, 24, 24);">list</mat-icon>
+          <mat-menu #products="matMenu">
+            <button mat-menu-item class="list" [matMenuTriggerFor]="pc">Ordinateur Portable</button>
+            <button mat-menu-item class="list" [matMenuTriggerFor]="pcbureau">Ordinateur De Bureau</button>
+            <button mat-menu-item class="list" [matMenuTriggerFor]="acc">Périhpériques & Accessoires</button>
+            <button mat-menu-item class="list" [matMenuTriggerFor]="ci">Composantes Informatiques</button>
+          </mat-menu>
+
+          <mat-menu #ci="matMenu">
+            <button mat-menu-item class="list">Carte Mère</button>
+            <button mat-menu-item class="list">Stockage</button>
+            <button mat-menu-item class="list">Carte Graphique</button>
+          </mat-menu>
+
+          <mat-menu #acc="matMenu">
+            <button mat-menu-item class="list">Souris</button>
+            <button mat-menu-item class="list">Claviers</button>
+            <button mat-menu-item class="list">Casques</button>
+
+          </mat-menu>
+
+          <mat-menu #pc="matMenu">
+            <button mat-menu-item class="list" [matMenuTriggerFor]="pcportable">Pc Portable</button>
+            <button mat-menu-item class="list" [matMenuTriggerFor]="pcportablegamer">Pc Portable Gamer</button>
+            <button mat-menu-item class="list" [matMenuTriggerFor]="mac">Mac</button>
+          </mat-menu>
+
+          <mat-menu #pcbureau="matMenu">
+            <button mat-menu-item class="list" [matMenuTriggerFor]="pcbureaun">Ordinateur De Bureau</button>
+            <button mat-menu-item class="list" [matMenuTriggerFor]="pcbureaungamer">Ordinateur De Bureau Gamer</button>
+          </mat-menu>
+
+          <mat-menu #pcbureaun="matMenu">
+            <button mat-menu-item class="list">HP</button>
+            <button mat-menu-item class="list">ASUS</button>
+            <button mat-menu-item class="list">DELL</button>
+          </mat-menu>
+
+          <mat-menu #pcbureaungamer="matMenu">
+            <button mat-menu-item class="list">OMEN</button>
+            <button mat-menu-item class="list">ASUS</button>
+            <button mat-menu-item class="list">MSI</button>
+          </mat-menu>
+
+          <mat-menu #pcportable="matMenu" class="list">
+            <button mat-menu-item>HP</button>
+            <button mat-menu-item>ASUS</button>
+            <button mat-menu-item>DELL</button>
+          </mat-menu>
+
+          <mat-menu #pcportablegamer="matMenu" class="list">
+            <button mat-menu-item>OMEN</button>
+            <button mat-menu-item>MSI</button>
+            <button mat-menu-item>ASUS</button>
+            <button mat-menu-item>Pavilion</button>
+          </mat-menu>
+
+          <mat-menu #mac="matMenu" class="list">
+            <button mat-menu-item>Macbook Pro</button>
+            <button mat-menu-item>Macbook Air</button>
+          </mat-menu>
+        </li>
+
+        <li class="nav-item">
+          <a [className]="acHome ? 'nav-link active' : 'nav-link'"  routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a [className]="acCon ? 'nav-link active' : 'nav-link'"  routerLink="/Contact">Contact us</a>
+        </li>
+        <li class="nav-item" style="margin-top: 5px; display: inline-block">
+          <form class="form-inline ml-auto">
+            <div class="md-form my-0">
+              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </div>
+            <mat-icon style="color: rgb(212,24,24)">search</mat-icon>
+          </form>
+        </li>
+        <li class="nav-item">
+          <a [className]="acLogReg ? 'nav-link active' : 'nav-link'" routerLink="/Login" title="Your account"><span class="glyphicon glyphicon-user"></span></a>
+        </li>
+      </ul>
+
+    </div>
+
+    <img src="../../../assets/Images/panier.png" routerLink="/panier" (mouseenter)="hideShowPan(1)" height="30px" style="z-index:6666666666;cursor:pointer;float: right" title="Shopping cart"/>
+
+  </div>
+
+</nav>
+<app-mini-panier *ngIf="!hideMinPan" class="panComp" [@smoothCollapse]="isOnP?'initial':'final'" (mouseleave)="hideShowPan(2)" ></app-mini-panier>
+
