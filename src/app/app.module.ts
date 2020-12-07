@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AdminComponent } from './Components/admin/admin.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './Components/home/home.component';
@@ -29,16 +28,31 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatDialogModule} from "@angular/material/dialog";
+import { ProductsComponent } from './Components/products/products.component';
+import { MiniPanierComponent } from './Components/mini-panier/mini-panier.component';
+import { CreateProduitComponent } from './Components/Admin/create-produit/create-produit.component';
+import { PanierComponent } from './Components/panier/panier.component';
+import { LoginComponent } from './Components/register-login/login/login.component';
+import { RegisterComponent } from './Components/register-login/register/register.component';
+import {DialogComponent} from "./Components/register-login/dialog.component";
+import { RegisterLoginComponent } from './Components/register-login/register-login.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
+    DialogComponent,
     HomeComponent,
     FooterComponent,
-    NavComponent
+    NavComponent,
+    ProductsComponent,
+    MiniPanierComponent,
+    CreateProduitComponent,
+    PanierComponent,
+    LoginComponent,
+    RegisterComponent,
+    RegisterLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -61,8 +75,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatNativeDateModule,
     MatIconModule,
     MatToolbarModule,
-    MatInputModule,
+    MatInputModule, MatDialogModule,
   ],
+  entryComponents: [DialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

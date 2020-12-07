@@ -7,7 +7,7 @@ import {Client} from "../../Models/client";
   providedIn: 'root'
 })
 export class ClientService {
-  url = 'localhost:8080/';
+  url = 'http://localhost:8080/';
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) { }
@@ -21,8 +21,8 @@ export class ClientService {
   }
 
   save(client: Client) {
-    this.headers = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
-    return this.http.post(this.url + 'client', client, {headers: this.headers});
+    // this.headers = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
+    return this.http.post(this.url + 'client', client/*, {headers: this.headers}*/);
   }
 
   update(client: Client) {

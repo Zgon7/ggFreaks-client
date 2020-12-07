@@ -7,7 +7,7 @@ import {SousCategorie} from "../../Models/sousCategorie";
   providedIn: 'root'
 })
 export class SousCategorieService {
-  url = 'localhost:8080/';
+  url = 'http://localhost:8080/';
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) { }
@@ -18,6 +18,10 @@ export class SousCategorieService {
 
   findById(id: string): Observable<any> {
     return this.http.get(this.url + 'souscategorie/' + id);
+  }
+
+  findByCategorie(id: string): Observable<any> {
+    return this.http.get(this.url + 'souscategorie/categorie/' + id);
   }
 
   save(sousCategorie: SousCategorie) {

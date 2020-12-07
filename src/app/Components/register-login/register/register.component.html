@@ -1,0 +1,87 @@
+<div class="medium-list" style="margin-top: 0px">
+  <div class="list-viewer-wrapper " align="center">
+    <div style="font-weight: bolder;font-size:30px" class="list-header-title">Sign up</div>
+      <div class="form-container">
+        <table align="center">
+          <tr>
+            <td colspan="2" align="center">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput
+                       id="email"
+                       #email
+                       required
+                       placeholder="exemple@exemple.exp"
+
+                       [(ngModel)]="user.email"
+                >
+              </mat-form-field>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <mat-pass-toggle-visibility #toggle  matSuffix></mat-pass-toggle-visibility>
+
+                <input matInput type="password"
+                       #password
+
+                       required
+                       placeholder="Type your password"
+                       [(ngModel)]="user.password"
+                >
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field appearance="outline">
+                <mat-label>Adresse</mat-label>
+                <mat-pass-toggle-visibility #toggle  matSuffix></mat-pass-toggle-visibility>
+
+                <input matInput
+
+                       required
+                       [(ngModel)]="user.adresse"
+                >
+              </mat-form-field>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <mat-form-field appearance="outline">
+                <mat-label>Prenom</mat-label>
+                <input matInput
+                       placeholder="Entrez votre nom"
+                       required
+                       [(ngModel)]="user.prenom"
+                       #name
+                ></mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput
+                       #lastname
+                       required
+                       placeholder="Entrez votre Prenom"
+                       [(ngModel)]="user.nom"
+                >
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <button  mat-raised-button  type="submit" (click)="add()">SIGN UP</button>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+  </div>
+</div>
