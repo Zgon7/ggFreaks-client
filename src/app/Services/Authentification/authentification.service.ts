@@ -7,7 +7,7 @@ import {Login} from "../../Models/login";
   providedIn: 'root'
 })
 export class AuthentificationService {
-  url = 'localhost:8080/';
+  url = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
 
@@ -22,4 +22,9 @@ export class AuthentificationService {
   singOut() {
     localStorage.clear();
   }
+
+  getToken() {
+    return   localStorage.getItem('token');
+  }
+
 }

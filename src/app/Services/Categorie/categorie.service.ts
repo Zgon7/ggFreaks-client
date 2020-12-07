@@ -7,7 +7,7 @@ import {Categorie} from "../../Models/categorie";
   providedIn: 'root'
 })
 export class CategorieService {
-  url = 'localhost:8080/';
+  url = 'http://localhost:8080/';
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) { }

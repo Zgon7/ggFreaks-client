@@ -1,0 +1,54 @@
+
+<div class="medium-list">
+  <div class="list-viewer-wrapper " align="center">
+    <div style="font-weight: bolder;font-size:30px" class="list-header-title">Sign in</div>
+    <form [formGroup]="loginForm"  (ngSubmit)="loginForm.valid" novalidate>
+      <div class="form-container">
+        <table align="center" >
+          <tr >
+            <td colspan="2" align="center">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput
+                       id="email"
+                       #email
+                       required
+                       placeholder="Type your email"
+                       formControlName="email"
+                       [(ngModel)]="user.email"
+                >
+                <mat-error *ngIf="loginForm.get('email').hasError('required')">Email required</mat-error>
+                <mat-error *ngIf="loginForm.get('email').hasError('email')">Incorrect email format</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+                <input matInput type="password"
+                       #password
+                       required
+
+                       placeholder="Entrez votre mot de passe"
+                       formControlName="password" [(ngModel)]="user.password"
+
+                >
+                <mat-error *ngIf="loginForm.get('password').hasError('required')">Password required</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <button (click)="login()"
+                      mat-raised-button  type="submit" [disabled]="loginForm.invalid" >CONNECTER</button>
+
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </form>
+  </div>
+</div>
