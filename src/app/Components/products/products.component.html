@@ -2,7 +2,10 @@
   <div  class="col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products">
     <div class="card">
       <div style="height: 300px" >
-        <img style="float:left;width:70px;margin:20px " class="card-img-top" src="{{product.image}}">
+        <img *ngIf="product.image != null; else noimage"  style="float:left;width:150px; height: 100px; margin:20px " class="card-img-top" [src]="'http://localhost:8080/files/' + product.image">
+        <ng-template #noimage>
+          <img style="float:left;width:150px; height: 100px; margin:20px " class="card-img-top" src="../../../assets/Images/Logo2.png">
+        </ng-template>
         <div class="card-body" style="min-height: 250px;max-height: 250px;overflow-y: auto">
           <h4 class="card-title">{{product.nom}}</h4>
           <p><span style="max-height: 50px;overflow-y: scroll">{{product.desc}}</span><br><br>PRICE: {{product.prix}} DT<br><br> Quantity: {{product.stock}}</p>

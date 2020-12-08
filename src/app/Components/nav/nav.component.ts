@@ -29,10 +29,14 @@ export class NavComponent implements OnInit {
   acCon: boolean;
   private isOnP: boolean;
   hideMinPan: boolean;
+  isAdmin = false;
+  isLogged;
 
   constructor() { }
 
   ngOnInit() {
+    this.isAdmin = localStorage.getItem("role") == "ADMIN";
+    this.isLogged = localStorage.getItem("token") != null;
 
     if (this.alwaysHideMinPan) {
       this.acHome = false;
@@ -58,4 +62,8 @@ export class NavComponent implements OnInit {
 
   }
 
+  logOut() {
+    localStorage.clear();
+    window.location.reload();
+  }
 }

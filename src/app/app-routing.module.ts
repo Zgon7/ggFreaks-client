@@ -4,12 +4,14 @@ import {HomeComponent} from "./Components/home/home.component";
 import {RegisterLoginComponent} from "./Components/register-login/register-login.component";
 import {PanierComponent} from "./Components/panier/panier.component";
 import {CreateProduitComponent} from "./Components/Admin/create-produit/create-produit.component";
+import {CheckoutComponent} from "./Components/checkout/checkout.component";
 
 
 
 const routes: Routes = [
   {path : '' , component: HomeComponent},
   {path : 'Login', component: RegisterLoginComponent},
+  {path : 'checkout', component: CheckoutComponent},
   {path : 'panier', component: PanierComponent},
   {path: 'admin/addproduct', component: CreateProduitComponent},
   /*{path : 'client/product/:id', component: CategoryDetailsComponent},

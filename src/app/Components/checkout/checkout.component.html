@@ -1,0 +1,89 @@
+<app-nav></app-nav>
+<div class="medium-list" style="margin-top: 0px">
+  <div class="list-viewer-wrapper " align="center">
+    <div style="font-weight: bolder;font-size:30px" class="list-header-title">Sign up</div>
+    <div class="form-container">
+      <table align="center">
+        <tr>
+          <td colspan="2" align="center">
+            <mat-form-field appearance="outline">
+              <mat-label>Adresse</mat-label>
+              <input matInput
+                     required
+                     placeholder="exemple@exemple.exp"
+
+                     [(ngModel)]="user.adresse"
+              >
+            </mat-form-field>
+          </td>
+
+        </tr>
+
+
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Prenom</mat-label>
+              <input matInput readonly
+                     placeholder="Entrez votre nom"
+                     required
+                     [(ngModel)]="user.prenom"
+                     #name
+              ></mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input matInput readonly
+                     #lastname
+                     required
+                     placeholder="Entrez votre Prenom"
+                     [(ngModel)]="user.nom"
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Carte</mat-label>
+              <input matInput readonly
+                     placeholder="Entrez votre numéro de carte"
+                     required
+                     #name
+              ></mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>date d'expiration</mat-label>
+              <input matInput readonly
+                     #lastname
+                     required
+              >
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Code</mat-label>
+              <input matInput readonly
+                     #lastname
+                     required
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+
+
+
+        <tr>
+          <td colspan="2" align="center">
+            <button  mat-raised-button  type="submit" (click)="pay()">Payer</button>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
