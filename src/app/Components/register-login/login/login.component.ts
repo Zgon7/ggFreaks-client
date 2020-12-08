@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthentificationService} from "../../../Services/Authentification/authentification.service";
 import {Login} from "../../../Models/login";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import {Login} from "../../../Models/login";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   user: Login;
-  constructor(private formBuilder: FormBuilder, private auth: AuthentificationService) {
+  constructor(private formBuilder: FormBuilder, private auth: AuthentificationService,
+              private router: Router) {
     this.user = new Login();
   }
 
@@ -25,13 +27,34 @@ export class LoginComponent implements OnInit {
   login() {
     return this.auth.login(this.user).subscribe(r => {
       // @ts-ignore
-      localStorage.setItem('token', r.token);
-      // @ts-ignore
-      localStorage.setItem('role', r.role);
-      // @ts-ignore
-      localStorage.setItem('userId', r.userId);
-      console.log(r);
-      }, error => {});
+      if (r.error) {
+        console.log("admin");
+        return this.auth.loginAdmin(this.user).subscribe(value => {
+          console.log(value);
+          // @ts-ignore
+          if (value.token) {
+            // @ts-ignore
+            localStorage.setItem('token', value.token);
+            // @ts-ignore
+            localStorage.setItem('role', value.role);
+            // @ts-ignore
+            localStorage.setItem('userId', value.userId);
+            this.router.navigateByUrl('/')
+          }
+        })
+      } else {
+        console.log("user");
+        // @ts-ignore
+        localStorage.setItem('token', r.token);
+        // @ts-ignore
+        localStorage.setItem('role', r.role);
+        // @ts-ignore
+        localStorage.setItem('userId', r.userId);
+        console.log(r);
+        this.router.navigateByUrl('/')
+      }
+    }, error => {
+    });
   }
 
 }

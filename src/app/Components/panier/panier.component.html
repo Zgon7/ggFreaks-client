@@ -23,8 +23,7 @@
             <button class="btn btn-danger" (click)="suppProduct(t.productToAdd._id)">x</button>
           </td>
           <td>
-            <img class="image" alt="Product image" title="See image" (click)="showImg(1,t.productToAdd.image)" style="cursor: pointer;border-radius: 15px; margin-right: 50px;height:100px;width:40px" src="{{t.productToAdd.image}}"/>
-
+            <img class="image" alt="Product image" title="See image" (click)="showImg(1,'http://localhost:8080/files/' + t.productToAdd.image)" style="cursor: pointer;border-radius: 15px; margin-right: 50px;height:100px;width:100px" [src]="'http://localhost:8080/files/' + t.productToAdd.image"/>
           </td>
           <td style="padding-top: 40px;">
             <h4>{{t.productToAdd.nom}}</h4>
@@ -59,7 +58,7 @@
           </li>
         </ul>
         <div style="text-align: right">
-          <a (click)="checkIfLoggedIn()" class="btn btn-success btn-lg" style="margin-right: 20px;color: white">Procceed to checkout</a>
+          <a [routerLink]="['/checkout', {'price': totalPrice + 10}]" class="btn btn-success btn-lg" style="margin-right: 20px;color: white">Procceed to checkout</a>
           <a routerLink="/" class="btn btn-lg"><span class="cntSh">Continue shopping</span></a>
         </div>
       </div>

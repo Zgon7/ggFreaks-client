@@ -36,6 +36,7 @@ import { LoginComponent } from './Components/register-login/login/login.componen
 import { RegisterComponent } from './Components/register-login/register/register.component';
 import {DialogComponent} from "./Components/register-login/dialog.component";
 import { RegisterLoginComponent } from './Components/register-login/register-login.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 
 
 
@@ -52,7 +53,8 @@ import { RegisterLoginComponent } from './Components/register-login/register-log
     PanierComponent,
     LoginComponent,
     RegisterComponent,
-    RegisterLoginComponent
+    RegisterLoginComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,6 @@ import { RegisterLoginComponent } from './Components/register-login/register-log
     MatButtonToggleModule,
     MatRadioModule,
     MatDialogModule,*/
-    ReactiveFormsModule,
     HttpClientModule,
     MatNativeDateModule,
     MatIconModule,

@@ -8,6 +8,7 @@ import {HttpClient} from "@angular/common/http";
 import {CategorieService} from "../../../Services/Categorie/categorie.service";
 import {SousCategorieService} from "../../../Services/SousCategorie/sous-categorie.service";
 import {SousCategorie} from "../../../Models/sousCategorie";
+import {UploadService} from "../../../Services/Upload/upload.service";
 
 @Component({
   selector: 'app-create-produit',
@@ -16,7 +17,8 @@ import {SousCategorie} from "../../../Models/sousCategorie";
 })
 export class CreateProduitComponent implements OnInit {
   @Output() closeAll = new EventEmitter<boolean>();
-
+  uploadedFiles: Array < File >;
+  imagePath: string;
   product: Produit = new Produit();
   submitted = false;
   selectedCategory: Categorie;
@@ -30,7 +32,8 @@ export class CreateProduitComponent implements OnInit {
   sousCategoriesList: Array<SousCategorie>;
 
   constructor(private productService: ProduitService, private router: Router, private httpClient: HttpClient,
-              private categorieService: CategorieService, private sousCategorieService: SousCategorieService) {
+              private categorieService: CategorieService, private sousCategorieService: SousCategorieService,
+              private uploadService: UploadService) {
     this.categoriesList = new Array<Categorie>();
     this.sousCategoriesList = new Array<SousCategorie>();
   }
@@ -48,10 +51,12 @@ export class CreateProduitComponent implements OnInit {
   }
   save() {
     try {
+      this.upload();
       this.productService.save(this.product)
         .subscribe(data => console.log(data), error => {console.log(error);
           this.productService.findAll(); });
       this.product = new Produit();
+      window.location.reload();
     } catch (e) {
       console.log('invalid');
     }
@@ -68,5 +73,28 @@ export class CreateProduitComponent implements OnInit {
     this.sousCategorieService.findByCategorie(this.selectedCategory._id).subscribe(value1 => {
       this.sousCategoriesList = value1.sousCategories;
     })
+  }
+
+  fileChange($event: Event) {
+    // @ts-ignore
+    this.uploadedFiles = $event.target.files;
+    console.log(this.uploadedFiles);
+    this.upload();
+  }
+
+  upload() {
+    const formData = new FormData();
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.uploadedFiles.length; i++) {
+      formData.append('uploads[]', this.uploadedFiles[i], this.uploadedFiles[i].name);
+    }
+    this.uploadService.upload(formData).subscribe((response) => {
+      console.log(response);
+      const img = document.getElementById('img') as HTMLImageElement;
+      // @ts-ignore
+      this.product.image = response.name;
+      this.imagePath = 'http://localhost:8080/files/' + this.product.image;
+      console.log(this.product);
+    });
   }
 }
