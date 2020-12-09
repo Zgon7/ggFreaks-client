@@ -34,4 +34,8 @@ export class ProduitService {
     this.headers = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
     return this.http.delete(this.url + 'produit/' + id, {headers: this.headers});
   }
+
+  findBySousCateg(sousCateg: string): Observable<any> {
+        return this.http.get(this.url + 'produit/souscateg/' + sousCateg);
+  }
 }
