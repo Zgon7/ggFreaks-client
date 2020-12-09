@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Commande} from "../../Models/commande";
+import {Contact} from "../../Models/contact";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeService {
-  url = 'localhost:8080/';
+  url = 'http://localhost:8080/';
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) { }
@@ -32,6 +33,14 @@ export class CommandeService {
   update(commande: Commande) {
     this.headers = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
     return this.http.put(this.url + 'commande', commande, {headers: this.headers});
+  }
+
+  sendMail(mail: string, price: number) {
+    return this.http.get(this.url + 'email/' + mail + '/' + price);
+  }
+
+  sendContact(contact: Contact) {
+    return this.http.post(this.url + 'emailcontact', contact);
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Produit} from "../../Models/produit";
 import {Categorie} from "../../Models/categorie";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import * as SecureLS from 'secure-ls';
 import {MiniPanierComponent} from "../mini-panier/mini-panier.component";
 import {ProduitService} from "../../Services/Produit/produit.service";
@@ -17,6 +17,7 @@ interface CartProdcut {
 })
 export class ProductsComponent implements OnInit {
 
+  sousCateg = null;
   products: Produit[];
   category: Categorie;
   cart: CartProdcut;
@@ -26,19 +27,30 @@ export class ProductsComponent implements OnInit {
   private ls: SecureLS;
 
 
-  constructor(private productService: ProduitService, private router: Router) {
+  constructor(private productService: ProduitService, private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.sousCateg = params['name'];
+    })
 
     this.ls = new SecureLS({encodingType: 'aes'});
     this.reloadData();
   }
   reloadData() {
-    this.productService.findAll().subscribe(r => {
-      this.products = r.produits;
-      console.log(r);
-    });
+    if (this.sousCateg == null) {
+      this.productService.findAll().subscribe(r => {
+        this.products = r.produits;
+        console.log(r);
+      });
+    } else {
+      this.productService.findBySousCateg(this.sousCateg).subscribe(r => {
+        this.products = r.produits;
+        console.log(r);
+      });
+    }
   }
 
   deleteProduct(idProduct: number) {

@@ -58,7 +58,7 @@
           </li>
         </ul>
         <div style="text-align: right">
-          <a [routerLink]="['/checkout', {'price': totalPrice + 10}]" class="btn btn-success btn-lg" style="margin-right: 20px;color: white">Procceed to checkout</a>
+          <a (click)="addCommande()" [routerLink]="['/checkout', {'price': totalPrice + 10}]" class="btn btn-success btn-lg" style="margin-right: 20px;color: white">Procceed to checkout</a>
           <a routerLink="/" class="btn btn-lg"><span class="cntSh">Continue shopping</span></a>
         </div>
       </div>

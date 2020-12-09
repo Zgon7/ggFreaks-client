@@ -5,6 +5,8 @@ import {RegisterLoginComponent} from "./Components/register-login/register-login
 import {PanierComponent} from "./Components/panier/panier.component";
 import {CreateProduitComponent} from "./Components/Admin/create-produit/create-produit.component";
 import {CheckoutComponent} from "./Components/checkout/checkout.component";
+import {ProductsComponent} from "./Components/products/products.component";
+import {ContactComponent} from "./Components/contact/contact.component";
 
 
 
@@ -14,14 +16,8 @@ const routes: Routes = [
   {path : 'checkout', component: CheckoutComponent},
   {path : 'panier', component: PanierComponent},
   {path: 'admin/addproduct', component: CreateProduitComponent},
-  /*{path : 'client/product/:id', component: CategoryDetailsComponent},
-  {path: 'admin/categories', component: CategoryListBACKComponent},
-  {path: 'admin/addCategory', component: CreateCategoryComponent},
-  {path: 'admin/updateCategory/:id', component: UpdateCategoryComponent},
-  {path: 'admin/detailCategory/:id', component: CategoryDetailsBACKComponent},
-  {path: 'admin/products', component: ProductListBACKComponent},
-  {path: 'admin/detailProduct/:id', component: ProductDetailsComponent},
-  {path: 'admin/updateProduct/:id', component: UpdateProductComponent}*/
+  {path: 'contact', component: ContactComponent},
+  {path: "products/souscateg/:name", component: ProductsComponent},
 
 ];
 

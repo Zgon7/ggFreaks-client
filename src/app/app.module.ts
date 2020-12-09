@@ -37,6 +37,7 @@ import { RegisterComponent } from './Components/register-login/register/register
 import {DialogComponent} from "./Components/register-login/dialog.component";
 import { RegisterLoginComponent } from './Components/register-login/register-login.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { ContactComponent } from './Components/contact/contact.component';
 
 
 
@@ -54,7 +55,8 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
     LoginComponent,
     RegisterComponent,
     RegisterLoginComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

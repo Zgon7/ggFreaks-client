@@ -3,6 +3,9 @@ import * as SecureLS from 'secure-ls';
 import {NavComponent} from '../nav/nav.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Produit} from "../../Models/produit";
+import {CommandeService} from "../../Services/Commande/commande.service";
+import {Commande} from "../../Models/commande";
+import {ClientService} from "../../Services/Client/client.service";
 interface CartProdcut {
   productToAdd: Produit;
   qte: number;
@@ -14,6 +17,7 @@ interface CartProdcut {
 })
 export class PanierComponent implements OnInit {
   logged: boolean;
+  commandes: Array<Commande>;
   isMobile: boolean;
   showHideImg: boolean;
   imgSrc: string;
@@ -22,9 +26,14 @@ export class PanierComponent implements OnInit {
   totalPrice: number;
   emptyTab: boolean;
   showLogIns: boolean;
-  constructor() { }
+  constructor(private commandeService: CommandeService, private clientService: ClientService) {
+    this.commandes = new Array<Commande>();
+  }
 
   ngOnInit() {
+    this.commandeService.findMyCommandes().subscribe(value => {
+      this.commandes = value.commandes;
+    });
     this.showLogIns = false;
     this.logged = false;
     this.emptyTab = false;
@@ -99,6 +108,27 @@ export class PanierComponent implements OnInit {
   }
   closeLogIns() {
     this.showLogIns = false;
+  }
+
+  addCommande() {
+    const commande = new Commande();
+    commande.produits = [{_id: null, qte: 0}];
+    commande.client = localStorage.getItem('userId');
+    commande.date = new Date();
+    commande.vendu = false;
+    console.log(commande);
+    console.log(this.tabRes);
+    this.tabRes.forEach(value => {
+      commande.produits.push({_id: value.productToAdd._id.toString(), qte: value.qte});
+    });
+    this.commandeService.save(commande);
+    this.clientService.findById(localStorage.getItem('userId')).subscribe(value => {
+      const email = value.client.email;
+      console.log(email);
+      this.commandeService.sendMail(email, this.totalPrice + 10).subscribe(value1 => {
+        console.log('email sent');
+      })
+    })
   }
 }
 

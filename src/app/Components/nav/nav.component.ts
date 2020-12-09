@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -32,7 +33,7 @@ export class NavComponent implements OnInit {
   isAdmin = false;
   isLogged;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.isAdmin = localStorage.getItem("role") == "ADMIN";
@@ -65,5 +66,9 @@ export class NavComponent implements OnInit {
   logOut() {
     localStorage.clear();
     window.location.reload();
+  }
+
+  getProds(pcPortbale: string) {
+      // this.router.navigateByUrl('products/souscateg/?name='+ pcPortbale);
   }
 }
